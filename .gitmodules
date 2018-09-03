@@ -1,7 +1,7 @@
 [submodule "lib/axtls"]
 	path = lib/axtls
-	url = https://github.com/pfalcon/axtls
-	branch = micropython
+	url = https://github.com/superquest/axtls
+	branch = micropython-2.1.3
 [submodule "lib/libffi"]
 	path = lib/libffi
 	url = https://github.com/atgreen/libffi
@@ -18,3 +18,11 @@
 [submodule "lib/nrfx"]
 	path = lib/nrfx
 	url = https://github.com/NordicSemiconductor/nrfx.git
+[submodule "lib/modcryptocurrency"]
+	path = lib/modcryptocurrency
+	url = https://github.com/Coldcard/modcryptocurrency.git
+	branch = master
+[submodule "lib/trezor-crypto"]
+	path = lib/trezor-crypto
+	url = https://github.com/peter-conalgo/trezor-crypto.git
+	branch = master
