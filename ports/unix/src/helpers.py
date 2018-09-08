@@ -65,3 +65,11 @@ def read_varint(s):
         # anything else is just the integer
         return i
 
+# Mine
+
+def reverse_bytes(b):
+    reversed = b""
+    for x in b:
+        reversed = reversed + chr(x)
+    return reversed
+
