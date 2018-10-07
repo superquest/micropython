@@ -1,15 +1,8 @@
-import urandom
 import tcc
+from helpers import entropy, double_sha256
 
 
 SEED_FILE = "seed.txt"
-
-def entropy(n: int):
-    # TODO: hardware RNG
-    return bytes([urandom.getrandbits(8) for _ in range(n)])
-
-def double_sha256(message: bytes) -> bytes:
-    return tcc.sha256(tcc.sha256(message).digest()).digest()
 
 def derive_node(seed, path: list, curve_name: str = "secp256k1") -> tcc.bip32.HDNode:
     print(seed)

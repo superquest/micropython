@@ -1,4 +1,5 @@
 import tcc
+import urandom
 
 SIGHASH_ALL = 1
 SIGHASH_NONE = 2
@@ -7,6 +8,10 @@ BASE58_ALPHABET = b'123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz'
 
 def double_sha256(message: bytes) -> bytes:
     return tcc.sha256(tcc.sha256(message).digest()).digest()
+
+def entropy(n: int):
+    # TODO: hardware RNG
+    return bytes([urandom.getrandbits(8) for _ in range(n)])
 
 def decode_base58(s):
     num = 0
