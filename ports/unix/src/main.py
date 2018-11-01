@@ -1,29 +1,16 @@
 import tcc
-import keys
 
-
-def sign_and_verify(seed):
-    path = [0, 0, 0, 0]
-    message = b"test"
-    node = keys.derive_node(seed, path)
-    print("signing...")
-    sig = keys.sign_message(node, message)
-    print("verifies?", keys.verify(node, sig, message))
-
-def init():
-    keys.init_device()
-    print("saved seed to disk")
-
-def boot():
-    seed = keys.load_seed_from_disk()
-    print("read seed from disk")
-    return seed
 
 def main():
-    init()
-    seed = boot()
-    sign_and_verify(seed)
+    node = tcc.bip32.from_seed(b"foo", "secp256k1")
+    message = "hi"
+    private_key = node.private_key()
+    public_key = node.public_key()
+    message_digest = tcc.sha256(message).digest()
+    sig = tcc.secp256k1.sign(private_key, message_digest)
+    verifies = tcc.secp256k1.verify(public_key, sig, message_digest)
+    print("Verifies?", verifies)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
